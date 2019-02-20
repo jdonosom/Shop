@@ -32,7 +32,14 @@ namespace Shop.Web
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddTransient<SeedDb>();
+
+
+            // Injectar clases
+            services.AddTransient<SeedDb>();               // AddTrasient ciclo de vida corta.
+            services.AddScoped<IRepository, Repository>(); // AddScoped la injección de la clase queda permanente por toda la ejecucion de la aplicación.
+
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
