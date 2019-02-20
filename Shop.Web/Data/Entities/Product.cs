@@ -7,10 +7,12 @@ namespace Shop.Web.Data.Entities
 
 
 
-    public class Product
+    public class Product : IEntity
     {
         public int Id { get; set; }
 
+        [MaxLength(50, ErrorMessage = "El largo del campo {0} debe ser {1}.")]
+        [Required]
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
@@ -30,5 +32,7 @@ namespace Shop.Web.Data.Entities
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
         public double Stock { get; set; }
+
+        public User User { get; set; }
     }
 }
