@@ -34,7 +34,6 @@
                     Email = "jpdonosom@gmail.com",
                     UserName = "jpdonosom@gmail.com",
                     PhoneNumber = "+56994843344"
-
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456");
@@ -44,13 +43,12 @@
                 }
 
             }
-
-
+            // Agregar productos
             if (!this.context.Products.Any())
             {
-                this.AddProduct("First Product", user);
-                this.AddProduct("Second Product", user);
-                this.AddProduct("Third Product", user);
+                this.AddProduct("iPhone X", user);
+                this.AddProduct("Magic Mouse", user);
+                this.AddProduct("iWatch Series 4", user);
                 await this.context.SaveChangesAsync();
             }
         }
@@ -62,7 +60,8 @@
                 Name = name,
                 Price = this.random.Next(100),
                 IsAvailabe = true,
-                Stock = this.random.Next(100)
+                Stock = this.random.Next(100),
+                User = user
             });
         }
     }

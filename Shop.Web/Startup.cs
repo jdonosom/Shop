@@ -42,11 +42,10 @@
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-
-
             // Injectar clases
-            services.AddTransient<SeedDb>();               // AddTrasient ciclo de vida corta.
-            services.AddScoped<IRepository, Repository>(); // AddScoped la injección de la clase queda permanente por toda la ejecucion de la aplicación.
+            services.AddTransient<SeedDb>();                             // AddTrasient ciclo de vida corta.
+            services.AddScoped<IProductRepository, ProductRepository>(); // AddScoped la injección de la clase queda permanente por toda la ejecucion de la aplicación.
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IUserHelper, UserHelper>();
 
             services.Configure<CookiePolicyOptions>(options =>
