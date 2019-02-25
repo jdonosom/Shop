@@ -9,21 +9,23 @@
             <StackLayout
                 Padding="8">
                 <Label
-                    Text="Email" />
+                    Text="Email">
+                </Label>
                 <Entry 
                     Keyboard="Email"
                     Placeholder="Ingrese su correo"
-                    Text="{Binding Email}" />
+                    Text="{Binding Email}">
+                </Entry>
 
                 <Label
-                    Text="Password" />
+                    Text="Password" ></Label>
                 <Entry 
                     IsPassword="True"
                     Placeholder="Ingrese su password"
-                    Text="{Binding Password}" />
+                    Text="{Binding Password}"></Entry>
                 <Button
                     Text="Login"
-                    Command="{Binding LoginCommand}" />
+                    Command="{Binding LoginCommand}"></Button>
 
 
             </StackLayout>
