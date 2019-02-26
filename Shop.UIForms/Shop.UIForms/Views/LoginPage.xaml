@@ -22,10 +22,14 @@
                 <Entry 
                     IsPassword="True"
                     Placeholder="Ingrese su password"
-                    Text="{Binding Password}"></Entry>
+                    Text="{Binding Password}">
+                    
+                </Entry>
                 <Button
                     Text="Login"
-                    Command="{Binding LoginCommand}"></Button>
+                    Command="{Binding LoginCommand}">
+                    
+                </Button>
 
 
             </StackLayout>
