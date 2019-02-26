@@ -7,6 +7,12 @@ namespace Shop.UIForms.ViewModels
 {
     public class LoginViewModel
     {
+        public LoginViewModel()
+        {
+            this.Email = "jpdonosom@gmail.com";
+            this.Password = "123456";
+        }
+
         public string  Email { get; set; }
 
         public string Password { get; set; }
@@ -31,6 +37,17 @@ namespace Shop.UIForms.ViewModels
                     "Aceptar");
                 return;
             }
+
+            if ( !(this.Email.Equals("jpdonosom@gmail.com") || this.Password.Equals("123456")) )
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Credenciales incorrectas!!",
+                    "Aceptar");
+                return;
+            }
+
+
             await Application.Current.MainPage.DisplayAlert(
                     "OK",
                     "Usted a ingresado correctamente",

@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using Data;
     using Data.Entities;
@@ -24,7 +25,7 @@
         // GET: Products
         public IActionResult Index()
         {
-            return View(this.productRepository.GetAll());
+            return View(this.productRepository.GetAll().OrderBy( p => p.Name) );
         }
 
         // GET: Products/Details/5
@@ -61,16 +62,20 @@
 
                 if (view.ImageFile != null )
                 {
+
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
                     path = Path.Combine(
                         Directory.GetCurrentDirectory(), 
                         "wwwroot\\images\\Products",
-                        Path.GetFileName(view.ImageFile.FileName));
+                        file);
 
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await view.ImageFile.CopyToAsync(stream);
                     }
-                    path = $"~/images/Products/{Path.GetFileName(view.ImageFile.FileName)}";
+                    path = $"~/images/Products/{file}";
                 }
 
                 var product = this.ToProduct(view, path);
@@ -124,11 +129,10 @@
             return new ProductViewModel
             {
                 Id = product.Id,
+                ImageUrl = product.ImageUrl,
                 IsAvailabe = product.IsAvailabe,
                 LastPurchase = product.LastPurchase,
                 LastSale = product.LastSale,
-                ImageUrl = product.ImageUrl,
-                
                 Name = product.Name,
                 Price = product.Price,
                 Stock = product.Stock,
@@ -146,18 +150,22 @@
                 try
                 {
                     var path = view.ImageUrl;
+
                     if (view.ImageFile != null)
                     {
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+
                         path = Path.Combine(
                             Directory.GetCurrentDirectory(),
                             "wwwroot\\images\\Products",
-                            Path.GetFileName(view.ImageFile.FileName));
+                            file);
 
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await view.ImageFile.CopyToAsync(stream);
                         }
-                        path = $"~/images/Products/{Path.GetFileName(view.ImageFile.FileName)}";
+                        path = $"~/images/Products/{file}";
                     }
                     var product = this.ToProduct(view, path);
 
