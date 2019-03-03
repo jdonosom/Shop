@@ -1,10 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Shop.Common.Models
+﻿namespace Shop.Common.Models
 {
+    using Newtonsoft.Json;
+    using System;
+
     public partial class User
     {
         [JsonProperty("firstName")]
@@ -58,5 +56,4 @@ namespace Shop.Common.Models
         [JsonProperty("accessFailedCount")]
         public long AccessFailedCount { get; set; }
     }
-
 }
